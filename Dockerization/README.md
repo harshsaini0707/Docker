@@ -6,7 +6,7 @@
 
 
 
-ALl this command are layers and internally docker chace the layers
+All this command are layers and internally docker cache the layers
  -->
 
 

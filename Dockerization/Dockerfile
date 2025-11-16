@@ -1,20 +1,26 @@
 #Base Image
-FROM ubuntu
-
-
-
-RUN apt-get update
-RUN apt install -y curl
-#install node.js
-RUN curl -sL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
-RUN bash nodesource_setup.sh
-RUN apt install -y nodejs
- 
-#Copying the source code to docker image
-COPY index.js /home/app/index.js
-COPY package-lock.json /home/app/package-lock.json
-COPY package.json /home/app/package.json
-
+FROM node:lts-alpine3.22 
+#this is apline version in which nodejs is already installed
 
 WORKDIR /home/app
-RUN npm install
+
+
+#Copying the source code to docker image
+
+# COPY package-lock.json package-lock.json
+# COPY package.json package.json
+COPY package*.json .
+RUN npm install 
+
+
+
+COPY index.js index.js
+
+COPY Dockerfile Dockerfile
+#above all remain cache and below them again run
+
+
+EXPOSE 8000
+
+#if someone this this file this command run automatically 
+CMD ["npm", "start"]
