@@ -24,3 +24,4 @@ EXPOSE 8000
 
 #if someone this this file this command run automatically 
 CMD ["npm", "start"]
+#image created
